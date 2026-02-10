@@ -1,15 +1,21 @@
+# JK-ID-CARD
+>>>>>>> 9e3f111cf461b043f91277a096d445eb4b008820
+# JK-ID-CARD
 
-  # Gradient gallery page
+Student ID Card Generator - A modern web application for creating and managing student ID cards.
 
-  This is a code bundle for Gradient gallery page. The original project is available at https://www.figma.com/design/r1aJdCXXnwdtVyLCddM2Vg/Gradient-gallery-page.
+## Features
+- Photo upload and ID generation
+- Live preview functionality
+- Admin panel for management
+- Export capabilities (PNG/PDF)
+- Responsive design
 
-  ## Running the code
+## Running the code
 
-  Run `npm i` to install the dependencies.
+Run `npm i` to install the dependencies.
 
-  Run `npm run dev` to start the development server.
-  "# jkidcard" 
-"# jkidcard" 
-"# jkidcard" 
-"# jkidcard" 
-"# jkidcard" 
+Run `npm run dev` to start the development server.
+=======
+# JK-ID-CARD
+>>>>>>> 9e3f111cf461b043f91277a096d445eb4b008820
