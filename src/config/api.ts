@@ -8,7 +8,10 @@ const getApiBaseUrl = (): string => {
     } else {
       // Production - use the same domain or a configured backend URL
       // You can either use a relative path or set a production backend URL
-      return `${window.location.protocol}//${window.location.host}`;
+      // For deployment, you'll need to set the actual backend URL here
+      // Or use environment variables if supported by your hosting platform
+      const backendUrl = process.env.REACT_APP_API_URL || (window as any).ENV?.REACT_APP_API_URL;
+      return backendUrl || `${window.location.protocol}//${window.location.host}`;
     }
   }
   // Server-side rendering fallback
@@ -29,5 +32,6 @@ export const getConfiguredApiUrl = (endpoint: string): string => {
   }
 
   // Otherwise use the base URL we determined
-  return `${API_BASE_URL}/api${endpoint}`;
+  const baseUrl = getApiBaseUrl(); // Use function directly to ensure fresh value
+  return `${baseUrl}/api${endpoint}`;
 };
