@@ -4,7 +4,7 @@ const getApiBaseUrl = (): string => {
     // Client-side
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       // Local development
-      return 'http://localhost:5000';
+      return 'http://localhost:5001';
     } else {
       // Production - use the same domain or a configured backend URL
       // You can either use a relative path or set a production backend URL
@@ -12,7 +12,7 @@ const getApiBaseUrl = (): string => {
     }
   }
   // Server-side rendering fallback
-  return 'http://localhost:5000';
+  return 'http://localhost:5001';
 };
 
 export const API_BASE_URL = getApiBaseUrl();
