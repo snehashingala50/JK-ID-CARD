@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StudentView } from './components/StudentView';
 import { AdminPanel } from './components/AdminPanel';
 import { Shield } from 'lucide-react';
+import { getConfiguredApiUrl } from './config/api';
 
 export interface SchoolSettings {
   logo: string | null;
@@ -77,7 +78,7 @@ export default function App() {
       const token = localStorage.getItem('sessionToken');
       if (token) {
         try {
-          const response = await fetch('http://localhost:5000/api/auth/verify-session', {
+          const response = await fetch(getConfiguredApiUrl('/auth/verify-session'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ sessionToken: token })
@@ -110,7 +111,7 @@ export default function App() {
 
   const fetchStudents = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/students');
+      const response = await fetch(getConfiguredApiUrl('/students'));
       if (response.ok) {
         const students = await response.json();
         setSubmissions(students);
@@ -126,7 +127,7 @@ export default function App() {
     if (loginStep === 'credentials') {
       // Direct login with username and password
       try {
-        const response = await fetch('http://localhost:5000/api/auth/login', {
+        const response = await fetch(getConfiguredApiUrl('/auth/login'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -176,7 +177,7 @@ export default function App() {
     } else if (loginStep === 'forgot-password') {
       // Forgot Password Step 1: Send OTP to email
       try {
-        const response = await fetch('http://localhost:5000/api/auth/forgot-password', {
+        const response = await fetch(getConfiguredApiUrl('/auth/forgot-password'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: forgotEmail })
@@ -208,7 +209,7 @@ export default function App() {
       }
       
       try {
-        const response = await fetch('http://localhost:5000/api/auth/reset-password', {
+        const response = await fetch(getConfiguredApiUrl('/auth/reset-password'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -257,7 +258,7 @@ export default function App() {
     const role = (document.getElementById('signupRole') as HTMLSelectElement)?.value || 'admin';
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/signup', {
+      const response = await fetch(getConfiguredApiUrl('/auth/signup'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -298,7 +299,7 @@ export default function App() {
       console.log('Submitting form data:', formData);
       
       // Send data to backend API
-      const response = await fetch('http://localhost:5000/api/students', {
+      const response = await fetch(getConfiguredApiUrl('/students'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -363,7 +364,7 @@ export default function App() {
       console.log('Approving student with MongoDB ID:', mongoId);
 
       // Update status in backend
-      const response = await fetch(`http://localhost:5000/api/students/${mongoId}/status`, {
+      const response = await fetch(getConfiguredApiUrl(`/students/${mongoId}/status`), {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
